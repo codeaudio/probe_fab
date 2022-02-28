@@ -21,3 +21,8 @@ celery -A probe_fab.celery  beat -l info -S django
 ```
 CELERY_BROKER_URL = 'amqp://guest:guest@localhost' локлаьно
 из контейнера CELERY_BROKER_URL = 'amqp://guest:guest@bvz имя контейнера'
+
+
+документация http://62.84.120.238/swagger/
+
+апи http://62.84.120.238/api/v1/
