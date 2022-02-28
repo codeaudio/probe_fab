@@ -12,7 +12,7 @@ DB_PORT=5432
 SECRET_KEY=django-insecure-b)xxb9&&*rp!qmjd3+9m9=y-9cm^n)=f9-#w(eadmdxwcbd2a0
 DB=postgresql
 ```
-создать и запустить контейнеры docker-compose up --build (3 контейнера прилоежние, postgres, nginx)
+создать и запустить контейнеры docker-compose up --build (4 контейнера: прилоежние, postgres, nginx, rabbitmq)
 перейти в контейнер и запустить celery
 docker exec -it <id контейнера> bash
 ```
