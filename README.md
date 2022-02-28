@@ -19,3 +19,5 @@ docker exec -it <id контейнера> bash
 celery -A probe_fab worker --loglevel=INFO --without-gossip --without-mingle --without-heartbeat -Ofair --pool=solo
 celery -A probe_fab.celery  beat -l info -S django
 ```
+CELERY_BROKER_URL = 'amqp://guest:guest@localhost' локлаьно
+из контейнера CELERY_BROKER_URL = 'amqp://guest:guest@bvz имя контейнера'

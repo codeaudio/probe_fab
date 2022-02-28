@@ -13,8 +13,6 @@ services:
       dockerfile: Dockerfile
     command: bash -c "cp templates/arial.ttf static/admin/fonts/ && python manage.py makemigrations && python manage.py migrate --noinput && gunicorn probe_fab.wsgi:application --bind 0.0.0.0:8000"
     restart: always
-    ports:
-      - 8000:8000
     env_file:
       - ./.env
     depends_on:
@@ -31,6 +29,13 @@ services:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
       - static_value:/var/html/static/
       - media_value:/var/html/media/
+    depends_on:
+      - api
+  rabbitmq:
+    image: rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
     depends_on:
       - api
 volumes:
