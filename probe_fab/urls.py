@@ -6,12 +6,8 @@ from drf_yasg.views import get_schema_view
 
 schema_view = get_schema_view(
     openapi.Info(
-        #  add your swagger doc title
-        title="Showroom API",
-        #  version of the swagger doc
+        title="Probe Fab API",
         default_version='v1',
-        # first line that appears on the top of the doc
-        description="Test description",
     ),
     public=True,
 )
