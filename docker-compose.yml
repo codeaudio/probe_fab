@@ -11,7 +11,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: bash -c "cp templates/arial.ttf staticdjango/admin/fonts/ && python manage.py makemigrations && python manage.py migrate --noinput && gunicorn probe_fab.wsgi:application --bind 0.0.0.0:8000"
+    command: bash -c "python manage.py collectstatic --noinput && cp templates/arial.ttf staticdjango/admin/fonts/ && python manage.py makemigrations && python manage.py migrate --noinput && gunicorn probe_fab.wsgi:application --bind 0.0.0.0:8000"
     restart: always
     ports:
       - 8000:8000
