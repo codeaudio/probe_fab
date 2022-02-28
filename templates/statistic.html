@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Title</title>
+    <style type="text/css">
+        @font-face {
+            font-family: Arial;
+            src: url(/static/admin/fonts/arial.ttf);
+        }
+        body {
+            background-color: #f8f8f8;
+            font-weight: 200;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            font-size: 20px;
+            text-align: center;
+        }
+        .title span {
+            color: #150b0b;
+        }
+        .block {
+            padding: 10px 20px 0 20px;
+            text-align: left !important;
+        }
+        .hr {
+            box-shadow: 0 0 .2rem #1d1d1d,
+            0 0 .2rem #fff,
+            0 0 2rem #569896,
+            0 0 0.8rem #5a979f,
+            0 0 2.8rem #377599,
+            inset 0 0 1.3rem #000000;
+            border: none;
+            height: 1px;
+            color: #333;
+            background-color: #303032;
+        }
+    </style>
+</head>
+<body>
+<hr class='hr'/>
+<div class='header'>
+    Статистика
+</div>
+
+{% if malling_list %}
+    {% if not detail %}
+        {% for item in malling_list %}
+            <hr class='hr'/>
+            <div class='block'>
+                статус сообщения/кол-во: {{ item.messages__status }} | {{ item.count_messages }}
+                <p>
+                    <br>
+                    номер рассылки: {{ item.id }}
+                    <br>
+                    начало рассылки: {{ item.start_notification_date }}
+                    <br>
+                    конец рассылки: {{ item.end_notification_date }}
+                    <br>
+                    кол-во клиентов: {{ item.client_count }}
+                </p>
+            </div>
+        {% endfor %}
+    {% elif detail %}
+        {% for item in malling_list %}
+            <hr class='hr'/>
+            <div class='block'>
+                номер клиента: {{ item.messages__client }}
+                <br>
+                телефон: {{ item.messages__client__phone_number }}
+                <br>
+                код оператора: {{ item.messages__client__mobile_operator_code__code }}
+                <br>
+                тег: {{ item.messages__client__tag__name }}
+                <br>
+                статус сообщения/кол-во: {{ item.messages__status }} | {{ item.count_messages }}
+                <p>
+                    <br>
+                    номер рассылки: {{ item.id }}
+                    <br>
+                    начало рассылки: {{ item.start_notification_date }}
+                    <br>
+                    конец рассылки: {{ item.end_notification_date }}
+                    <br>
+                </p>
+                <hr class='hr'/>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% else %}
+    <div class='header'>
+        Данных нет
+    </div>
+{% endif %}
+</body>
+</html>

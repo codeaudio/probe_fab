@@ -1,0 +1,39 @@
+version: '3.3'
+
+services:
+  db:
+    image: postgres:12.4
+    volumes:
+     - postgres_data:/var/lib/postgresql/data/
+    env_file:
+     - ./.env
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: bash -c "cp templates/arial.ttf staticdjango/admin/fonts/ && python manage.py makemigrations && python manage.py migrate --noinput && gunicorn probe_fab.wsgi:application --bind 0.0.0.0:8000"
+    restart: always
+    ports:
+      - 8000:8000
+    env_file:
+      - ./.env
+    depends_on:
+      - db
+    volumes:
+      - static_value:/probe/static/
+      - media_value:/probe/media/
+  nginx:
+    image: nginx:1.19.3
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - static_value:/var/html/static/
+      - media_value:/var/html/media/
+    depends_on:
+      - api
+volumes:
+  postgres_data:
+  static_value:
+  media_value:
