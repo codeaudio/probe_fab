@@ -1,3 +1,5 @@
+Проект по отправке sms на группу рассылки в рамках задданого периода отправки
+
 Клонируйте репо git clone ...
 создаеть env c перменными
 ```
@@ -23,6 +25,6 @@ CELERY_BROKER_URL = 'amqp://guest:guest@localhost' локлаьно
 из контейнера CELERY_BROKER_URL = 'amqp://guest:guest@bvz имя контейнера'
 
 
-документация http://62.84.120.238/swagger/
+документация http://localhost/swagger/
 
-апи http://62.84.120.238/api/v1/
+апи http://localhost/api/v1/
